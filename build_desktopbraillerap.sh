@@ -5,6 +5,10 @@ export DISPLAY
 python3 -m venv venv
 source ./venv/bin/activate
 
+git pull
+git checkout $BRANCH_BUILD 
+
+
 printf "\e[1;34m######################\e[0m\n"
 printf "\e[1;34minstall python dependencies\e[0m\n" 
 printf "\e[1;34m######################\e[0m\n"
@@ -26,8 +30,6 @@ rm -r /home/builduser/dist/*
 printf "writing python linux dependencies\n" 
 pip freeze > /home/builduser/dist/requirement_test.txt
 
-git pull
-git checkout $BRANCH_BUILD 
 
 
 
