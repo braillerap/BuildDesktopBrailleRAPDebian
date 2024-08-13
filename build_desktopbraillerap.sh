@@ -34,8 +34,8 @@ pip freeze > /home/builduser/dist/requirement_test.txt
 
 
 # !! delete .gitignore !!
-ls -lah /home/builduser/DesktopBrailleRAP/package/debian/desktopbraillerap-debian/bin/.*
-rm /home/builduser/DesktopBrailleRAP/package/debian/desktopbraillerap-debian/bin/.*
+#ls -lah /home/builduser/DesktopBrailleRAP/package/debian/desktopbraillerap-debian/bin/.*
+#rm /home/builduser/DesktopBrailleRAP/package/debian/desktopbraillerap-debian/bin/.*
 
 tree  -a /home/builduser/DesktopBrailleRAP/package/debian
 
@@ -50,13 +50,16 @@ printf "\e[0mBuild finished\n"
 #npm run buildview
 #pyinstaller LinuxDesktopBrailleRAP.spec
 
- if [ $(find /home/builduser/DesktopBrailleRAP/dist/ -name "desktopbraillerap-debian.deb") ];
+ if [ $(find /home/builduser/DesktopBrailleRAP/dist/ -name "desktopbraillerap-debian-*.deb") ];
   then
     #ls -la /home/builduser/AccessBrailleRAP/build/
     #ls -la /home/builduser/AccessBrailleRAP/
     #ls -la /home/builduser/AccessBrailleRAP/dist/
     #cp -r /home/builduser/AccessBrailleRAP/build/* /home/builduser/dist/
-    md5sum /home/builduser/DesktopBrailleRAP/dist/desktopbraillerap-debian.deb > /home/builduser/DesktopBrailleRAP/dist/desktopbraillerap-debian.deb.md5sum
+    for f in /home/builduser/DesktopBrailleRAP/dist/desktopbraillerap-debian-*.deb
+    do
+        md5sum $f > $f.md5sum
+    done
     cp -r /home/builduser/DesktopBrailleRAP/dist/* /home/builduser/dist/
     ls -lah /home/builduser/dist/*
     printf "\e[0mCompilation: \e[1;32mSucceeded\n"
