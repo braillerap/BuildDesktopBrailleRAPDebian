@@ -59,6 +59,7 @@ printf "\e[0mBuild finished\n"
     for f in /home/builduser/DesktopBrailleRAP/dist/desktopbraillerap-debian-*.deb
     do
         md5sum $f > $f.md5sum
+        sed -i -r "s/ .*\/(.+)/  \1/g" $f.md5sum
     done
     cp -r /home/builduser/DesktopBrailleRAP/dist/* /home/builduser/dist/
     ls -lah /home/builduser/dist/*
