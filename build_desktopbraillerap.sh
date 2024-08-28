@@ -8,6 +8,7 @@ source ./venv/bin/activate
 git pull
 git checkout $BRANCH_BUILD 
 
+git-changelog -x -s v0.6.0 -f `git tag | tail -n 1`
 
 printf "\e[1;34m######################\e[0m\n"
 printf "\e[1;34minstall python dependencies\e[0m\n" 
@@ -45,17 +46,26 @@ printf "\e[1;34m######################\e[0m\n"
 printf "\e[1;34mBuild production ready\e[0m\n"
 printf "\e[1;34m######################\e[0m\n"
 npm run builddebian
-printf "\e[0mBuild finished\n"
 
-#npm run buildview
-#pyinstaller LinuxDesktopBrailleRAP.spec
+printf "\e[1;34m######################\e[0m\n"
+printf "\e[1;34mBuild finished\n"
+printf "\e[1;34m######################\e[0m\n"
+
+
+printf "\e[1;34m######################\e[0m\n"
+printf "\e[1;34mSome useful info\e[0m\n"
+printf "\e[1;34m######################\e[0m\n"
+ldd --version
+ldd /home/builduser/DesktopBrailleRAP/dist/desktopbraillerap-debian
+dpkg -S 'libc.so.6'
+dpkg -S 'libdl.so.2'
+dpkg -S 'libpthread.so.0'
+dpkg -S 'libz.so.1'
+
 
  if [ $(find /home/builduser/DesktopBrailleRAP/dist/ -name "desktopbraillerap-debian-*.deb") ];
   then
-    #ls -la /home/builduser/AccessBrailleRAP/build/
-    #ls -la /home/builduser/AccessBrailleRAP/
-    #ls -la /home/builduser/AccessBrailleRAP/dist/
-    #cp -r /home/builduser/AccessBrailleRAP/build/* /home/builduser/dist/
+    
     for f in /home/builduser/DesktopBrailleRAP/dist/desktopbraillerap-debian-*.deb
     do
         md5sum $f > $f.md5sum
