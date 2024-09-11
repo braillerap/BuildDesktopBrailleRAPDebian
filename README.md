@@ -1,4 +1,4 @@
-# BuildDesktopBrailleRAPDeian
+# BuildDesktopBrailleRAPDebian
 
 A docker configuration to build DesktopBrailleRAP for debian base os
 
